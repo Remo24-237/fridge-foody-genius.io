@@ -2,7 +2,7 @@
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import { useFavorites } from '../context/FavoritesContext';
-import { Heart, ArrowRight } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 const Favorites = () => {
   const { favorites } = useFavorites();

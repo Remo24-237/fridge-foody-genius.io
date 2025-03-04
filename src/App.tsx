@@ -9,48 +9,26 @@ import Index from "./pages/Index";
 import Favorites from "./pages/Favorites";
 import RecipeDetail from "./pages/RecipeDetail";
 import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
-
-// Initialize Capacitor if available
-const initCapacitor = async () => {
-  // Using a safer check for Capacitor existence
-  if (typeof (window as any).Capacitor !== 'undefined') {
-    try {
-      const { StatusBar, Style } = await import('@capacitor/status-bar');
-      StatusBar.setStyle({ style: Style.Light });
-    } catch (e) {
-      console.log('Status bar plugin not available', e);
-    }
-  }
-};
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  useEffect(() => {
-    initCapacitor();
-  }, []);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <FavoritesProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <div className="mobile-safe-area">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/recipe/:id" element={<RecipeDetail />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </div>
-          </BrowserRouter>
-        </FavoritesProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <FavoritesProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/recipe/:id" element={<RecipeDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </FavoritesProvider>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
