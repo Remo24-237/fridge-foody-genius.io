@@ -16,8 +16,8 @@ const initCapacitor = async () => {
   // Using a safer check for Capacitor existence
   if (typeof (window as any).Capacitor !== 'undefined') {
     try {
-      const { StatusBar } = await import('@capacitor/status-bar');
-      StatusBar.setStyle({ style: 'light' });
+      const { StatusBar, Style } = await import('@capacitor/status-bar');
+      StatusBar.setStyle({ style: Style.Light });
     } catch (e) {
       console.log('Status bar plugin not available', e);
     }
